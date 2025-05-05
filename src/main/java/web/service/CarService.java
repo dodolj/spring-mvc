@@ -3,21 +3,25 @@ package web.service;
 import org.springframework.stereotype.Service;
 import web.model.Car;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CarService {
 
-    private final List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
 
     public CarService() {
-        cars = new ArrayList<>();
-        cars.add(new Car("Toyota", 2019, "White"));
-        cars.add(new Car("Honda", 2020, "Black"));
+    }
+
+    @PostConstruct
+    public void init() {
         cars.add(new Car("Ford", 2018, "Red"));
         cars.add(new Car("BMW", 2021, "Blue"));
         cars.add(new Car("Audi", 2017, "Gray"));
+        cars.add(new Car("Mazda", 2000, "White"));
+        cars.add(new Car("Toyota", 2025, "Black"));
     }
 
     public List<Car> getCars(int count) {
